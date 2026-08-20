@@ -1,0 +1,46 @@
+name: 'PR Metadata Validator'
+description: 'Enforce branch naming conventions, PR title formats, and issue tracker rules using PHP.'
+author: 'ale94lko'
+branding:
+  icon: 'check-square'
+  color: 'blue'
+
+inputs:
+  validate_branch:
+    description: 'Enable or disable branch name validation.'
+    required: false
+    default: 'true'
+  validate_title:
+    description: 'Enable or disable Pull Request title validation.'
+    required: false
+    default: 'true'
+  require_ticket:
+    description: 'Require an issue tracker key (e.g., PROJ-123).'
+    required: false
+    default: 'true'
+  allowed_prefixes:
+    description: 'Comma-separated list of allowed branch prefixes.'
+    required: false
+    default: 'feature, bugfix, hotfix'
+  branch_regex:
+    description: 'Custom PCRE Regex to override default branch matching.'
+    required: false
+    default: ''
+  title_regex:
+    description: 'Custom PCRE Regex to override default title matching.'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run PHP PR Metadata Validator
+      shell: bash
+      env:
+        VALIDATE_BRANCH: ${{ inputs.validate_branch }}
+        VALIDATE_TITLE: ${{ inputs.validate_title }}
+        REQUIRE_TICKET: ${{ inputs.require_ticket }}
+        ALLOWED_PREFIXES: ${{ inputs.allowed_prefixes }}
+        BRANCH_REGEX: ${{ inputs.branch_regex }}
+        TITLE_REGEX: ${{ inputs.title_regex }}
+      run: php ${{ github.action_path }}/src/validate_pr.php
