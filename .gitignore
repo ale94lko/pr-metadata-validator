@@ -1,0 +1,43 @@
+# ==========================================
+# PHP & Composer
+# ==========================================
+/vendor/
+composer.phar
+composer.lock
+.phpunit.result.cache
+
+# ==========================================
+# GitHub Actions & Test Artifacts
+# ==========================================
+.github/scripts/temp/
+*.log
+*.tmp
+
+# ==========================================
+# IDEs & Editor Configurations
+# ==========================================
+# Cursor IDE / VS Code
+.vscode/
+.cursor/
+*.code-workspace
+
+# PhpStorm / JetBrains
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text / otros
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
