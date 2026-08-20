@@ -37,16 +37,8 @@ jobs:
     name: "PR & Branch Standards"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
       - name: Validate PR Metadata
-        uses: tu-usuario/pr-metadata-validator@v1
+        uses: ale94lko/pr-metadata-validator@v1
         with:
           validate_branch: 'true'
           validate_title: 'true'
@@ -81,7 +73,7 @@ Requires ticket IDs in both branch names and PR titles.
 * **Valid Title:** `[APP-102] Add Google OAuth support`
 
 ```yaml
-- uses: tu-usuario/pr-metadata-validator@v1
+- uses: ale94lko/pr-metadata-validator@v1
   with:
     require_ticket: 'true'
     allowed_prefixes: 'feature, bugfix, hotfix'
@@ -95,7 +87,7 @@ Enforces prefix conventions without requiring a ticket key.
 * **Valid Title:** `Refactor database queries for performance`
 
 ```yaml
-- uses: tu-usuario/pr-metadata-validator@v1
+- uses: ale94lko/pr-metadata-validator@v1
   with:
     require_ticket: 'false'
     allowed_prefixes: 'feature, bugfix, hotfix, chore, docs'
@@ -106,7 +98,7 @@ Enforces prefix conventions without requiring a ticket key.
 Override all default behavior with your team's custom expressions.
 
 ```yaml
-- uses: tu-usuario/pr-metadata-validator@v1
+- uses: ale94lko/pr-metadata-validator@v1
   with:
     branch_regex: '/^release\/v\d+\.\d+\.\d+$/' # Matches: release/v1.2.0
     title_regex: '/^REL-\d+: .+'           # Matches: REL-99: Production release

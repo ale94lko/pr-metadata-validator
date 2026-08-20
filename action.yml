@@ -34,6 +34,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        coverage: none
+
     - name: Run PHP PR Metadata Validator
       shell: bash
       env:
@@ -43,4 +49,4 @@ runs:
         ALLOWED_PREFIXES: ${{ inputs.allowed_prefixes }}
         BRANCH_REGEX: ${{ inputs.branch_regex }}
         TITLE_REGEX: ${{ inputs.title_regex }}
-      run: php ${{ github.action_path }}/src/validate_pr.php
+      run: php "${{ github.action_path }}/src/validate_pr.php"

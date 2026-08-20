@@ -45,7 +45,7 @@ $branchRegex = getenv('BRANCH_REGEX')
         : '') . ".+$/";
 $titleRegex = getenv('TITLE_REGEX')
     ?: ($requireTicket
-        ? '/^\[[A-Z]+-\d+\] .+'
+        ? '/^\[[A-Z]+-\d+\] .+/'
         : '/^.+/');
 
 $errors = [];
